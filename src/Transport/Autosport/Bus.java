@@ -5,41 +5,19 @@ import Transport.Car;
 
 public class Bus extends Car {
 
-    public Bus(String brand, String model, double engineVolume) {
+    private Capacity capacity;
+
+    public Bus(String brand, String model, double engineVolume, Capacity capacity) {
         super(brand, model, engineVolume);
+        this.capacity = capacity;
     }
 
-    public enum Capacity{
-        ESPECIALLY_SMALL("особо малая ", "до 10 мест" ),
-        SMALL("малая ", "до 25 мест"),
-        AVERAGE("средняя", " от 40 до 50 мест"),
-        BIG("большая ", " от 60 до 80 мест"),
-        VERY_BIG("особо большая ", " от 100 до 120 мест");
-        private String Capacity;
-        private String Capacity1;
+    public Capacity getCapacity() {
+        return capacity;
+    }
 
-        public static Bus.Capacity ESPECIALLY_SMALL() {
-            return ESPECIALLY_SMALL;
-        }
-
-        public String getCapacity1() {
-            return Capacity1;
-        }
-        public void setCapacity1(String capacity1) {
-            Capacity1 = capacity1;
-        }
-
-
-        Capacity(String capacity, String capacity1) {
-
-            Capacity = capacity;
-            Capacity1 =capacity1;
-        }
-
-        public String getCapacity() {
-            return Capacity;
-        }
-
+    public void setCapacity(Capacity capacity) {
+        this.capacity = capacity;
     }
 
     @Override
@@ -50,6 +28,15 @@ public class Bus extends Car {
     @Override
     public void stopMoving() {
 
+    }
+
+    @Override
+    public void printType() {
+        if (capacity == null) {
+            System.out.println("данных по авто не достаточно");
+        } else {
+            System.out.println("Максимум пассажиров: " + "от " + capacity.getFrom() + " до " + capacity.getTo());
+        }
     }
 
     @Override

@@ -4,25 +4,19 @@ import Transport.Car;
 
 public class Trucks extends Car {
 
-    public Trucks(String brand, String model, double engineVolume) {
+    private LoadCapacity loadCapacity;
+
+    public Trucks(String brand, String model, double engineVolume, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume);
+        this.loadCapacity = loadCapacity;
     }
 
-    public enum LoadCapacity{
-        N1("с полной массой до 3,5 тонн"),
-        N2("с полной массой свыше 3,5 до 12 тонн"),
-        N3("с полной массой свыше 12 тонн");
-        private String LoadCapacity;
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
 
-        public String getLoadCapacity() {
-            return LoadCapacity;
-        }
-        public void setLoadCapacity(String loadCapacity) {
-            LoadCapacity = loadCapacity;
-        }
-        LoadCapacity(String loadCapacity) {
-            LoadCapacity = loadCapacity;
-        }
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
@@ -33,6 +27,17 @@ public class Trucks extends Car {
     @Override
     public void stopMoving() {
 
+    }
+
+    @Override
+    public void printType() {
+        if (loadCapacity == null) {
+            System.out.println("данных по авто не достаточно");
+        } else {
+            String from = loadCapacity.getFrom() == null ? "" : "от " + loadCapacity.getFrom() + " ";
+            String to = loadCapacity.getTo() == null ? "" : "до " + loadCapacity.getTo();
+            System.out.println("Грузоподъемность: " + from + to);
+        }
     }
 
     @Override
