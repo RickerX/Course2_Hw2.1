@@ -49,6 +49,9 @@ public abstract class Car implements Competing{
     public abstract void startMoving();
     public abstract void stopMoving();
 
+    public abstract void printType();
+
+
     @Override
     public String toString() {
         return "Бренд: " + getBrand() + '\'' + " модель: " + getModel() + '\'' + " объем двигателя: " +getEngineVolume() + " литра. " ;

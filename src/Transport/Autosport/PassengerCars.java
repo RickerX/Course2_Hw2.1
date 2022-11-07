@@ -4,34 +4,19 @@ import Transport.Car;
 
 public class PassengerCars extends Car {
 
-    public PassengerCars(String brand, String model, double engineVolume) {
+    private TypeOfBody typeOfBody;
+
+    public PassengerCars(String brand, String model, double engineVolume,TypeOfBody typeOfBody) {
         super(brand, model, engineVolume);
+        this.typeOfBody = typeOfBody;
     }
 
-    public enum BodyType {
-        SEDAN("Седан"),
-        HATCHBEK("Хэтчбек"),
-        COUPE("Купэ"),
-        STATION_WAGON("Универсал"),
-        SUV("Внедорожник"),
-        CROSSOVER("Кроссовер"),
-        PICKUP_TRUCK("Пикап"),
-        VAN("Фургон"),
-        MINIVAN("Минивен");
-        private String BodyType;
+    public TypeOfBody getTypeOfBody() {
+        return typeOfBody;
+    }
 
-        public String getBodyType() {
-            return BodyType;
-        }
-
-        public void setBodyType(String bodyType) {
-            BodyType = bodyType;
-        }
-
-        BodyType(String bodyType) {
-            BodyType = bodyType;
-
-        }
+    public void setTypeOfBody(TypeOfBody typeOfBody) {
+        this.typeOfBody = typeOfBody;
     }
 
     @Override
@@ -42,6 +27,15 @@ public class PassengerCars extends Car {
     @Override
     public void stopMoving() {
 
+    }
+
+    @Override
+    public void printType() {
+        if (typeOfBody == null) {
+            System.out.println("данных по авто не достаточно");
+        } else {
+            System.out.println("Тип кузова: " + typeOfBody.getTypeOfBody());
+        }
     }
 
     @Override
